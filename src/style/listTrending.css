@@ -1,0 +1,30 @@
+.trending {
+    height: auto;
+    background: url("../assets/images/bgTrending.jpg");
+    background-size: cover;   
+}
+
+.cardListTrending {
+    height: auto;
+    background-color: black;
+    margin: 15px;
+    padding: 5px;
+}
+
+.cardListTrending:hover{
+    transform: scale(1.1); 
+}
+
+.cardTitleTrending {
+    height: 150px;
+}
+
+.imagesTrending {
+    height: 250px;
+}
+
+.iconRating {
+    color: yellow;
+}
+
+

@@ -1,0 +1,25 @@
+.comingsoon {
+    height: auto;
+    background: url("../assets/images/bgSuperHero.jpg");
+    background-size: cover;   
+}
+
+.cardListComingsoon {
+    height: auto;
+    background-color: black;
+    margin: 15px;
+    padding: 5px;
+}
+
+.cardListComingsoon:hover{
+    transform: scale(1.1); 
+}
+
+
+.cardTitleComingsoon {
+    height: 100px;
+}
+
+.imagesComingsoon {
+    height: 250px;
+}

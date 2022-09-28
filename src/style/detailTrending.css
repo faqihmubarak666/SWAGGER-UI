@@ -1,0 +1,22 @@
+.detailTrending {
+    height: auto;
+    background-size: cover;   
+}
+
+.boxDetailTrending{
+    padding: 2%;
+    background-color: #ffffff;
+    opacity: 0.6;
+}
+
+.posterDetail {
+    display: block;
+    margin: 0px auto;
+    text-align: center;
+    height: 400px;
+    width: 300px;
+}
+
+.iconRating{
+    color: #fbff00;
+}
