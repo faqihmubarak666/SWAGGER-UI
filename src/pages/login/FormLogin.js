@@ -2,13 +2,12 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router-dom";
-
 const FormLogin = (props) => {
   const {
     username,
     password,
     handleChangeInput,
-    getDataUser,
+    loginUser,
     usernameError,
     passwordError,
   } = props;
@@ -48,8 +47,8 @@ const FormLogin = (props) => {
               type="button"
               className="btnLogin"
               onClick={() => {
+                loginUser();
                 navigate("/checklist");
-                getDataUser();
               }}
             >
               Login

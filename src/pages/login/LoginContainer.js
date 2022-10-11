@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import FormLogin from "./FormLogin";
 import swal from "sweetalert";
-import { login, registerUser } from "../ServiceApi";
+import { login } from "../ServiceApi";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -22,45 +22,57 @@ class LoginContainer extends Component {
     this.setState({ ...this.state, [name]: event.target.value });
   };
 
-  getDataUser = () => {
+  loginUser = () => {
     if (this.state.username === "" && this.state.password === "") {
       this.setState({
-        usernameInvalid: "Invalid username",
-        passwordInvalid: "Invalid password",
+        usernameError: "Invalid username",
+        passwordError: "Invalid password",
       });
-      swal("Login Invalid", "You clicked the button!", "error");
+      swal("Login Invalid1", "You clicked the button!", "error");
     } else if (this.state.username === "") {
       this.setState({
-        usernameInvalid: "Invalid username",
+        usernameError: "Invalid username",
       });
-      swal("Login Invalid", "You clicked the button!", "error");
+      swal("Login Invalid2", "You clicked the button!", "error");
     } else if (this.state.password === "") {
       this.setState({
-        passwordInvalid: "Invalid password",
+        passwordError: "Invalid password",
       });
-      swal("Login Invalid", "You clicked the button!", "error");
+      swal("Login Invalid3", "You clicked the button!", "error");
     } else {
       login({
         username: this.state.username,
         password: this.state.password,
-      }).then((response) => {
-        if (response.data.token !== undefined) {
-          const data = response;
-          this.props.GetAdmin(data);
-          sessionStorage.setItem("token", response.data.token);
-          this.props.history.push({
-            pathname: "/checklist",
-          });
+      })
+        .then((response) => {
+          console.log("login", response);
+          if (response.statusCode === 2110) {
+            sessionStorage.setItem("token", response.data.token);
+            this.props.history?.push({
+              pathname: "/checklist",
+            });
 
-          this.setState({
-            isLoaded: !this.state.isLoaded,
-          });
+            this.setState({
+              isLoaded: !this.state.isLoaded,
+            });
 
-          swal("Login Success", "You clicked the button!", "success");
-        }
-      });
+            swal("Login Success", "You clicked the button!", "success");
+          } else {
+            swal("Login Invalid4", "You clicked the button!", "error");
+            this.props.history?.push({
+              pathname: "/",
+            });
+          }
+        })
+        .catch((err) => {
+          swal("Login Invalid5", "You clicked the button!", "error");
+          this.props.history?.push({
+            pathname: "/",
+          });
+        });
     }
   };
+
   render() {
     return (
       <div>
@@ -70,7 +82,7 @@ class LoginContainer extends Component {
           username={this.state.username}
           password={this.state.password}
           handleChangeInput={this.handleChangeInput}
-          getDataUser={this.getDataUser}
+          loginUser={this.loginUser}
         />
       </div>
     );
