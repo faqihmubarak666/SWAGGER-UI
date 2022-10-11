@@ -1,96 +1,66 @@
-//SERVICE PAGE TRENDING\\
+const baseUrl = "http://94.74.86.174:8080/api";
+const token =
+  "eyJhbGciOiJIUzUxMiJ9.eyJyb2xlcyI6W119.i2OVQdxr08dmIqwP7cWOJk5Ye4fySFUqofl-w6FKbm4EwXTStfm0u-sGhDvDVUqNG8Cc7STtUJlawVAP057Jlg";
 
-const getTrending = async () => {
-  const trendingMovie = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/trending/all/day?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await trendingMovie.json();
+const login = async (form) => {
+  const dataUser = await fetch(baseUrl + "/login", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  });
+  return await dataUser.json();
 };
 
-const getDetailTrending = async (idMovie) => {
-  const detailTrending = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/movie/${idMovie}?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await detailTrending.json();
+const registerUser = async (form) => {
+  const register = await fetch(baseUrl + "/register", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  });
+  return await register.json();
 };
 
-const getTrailerTrending = async (idMovie) => {
-  const trailerTrending = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/movie/${idMovie}/videos?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await trailerTrending.json();
+const getAllChecklist = async () => {
+  const checkList = await fetch(baseUrl + "/checklist", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return await checkList.json();
 };
 
-//SERVICE PAGE COMING SOON\\
-
-const getComingsoon = async () => {
-  const comingsoon = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/movie/upcoming?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await comingsoon.json();
+const createName = async (form) => {
+  const name = await fetch(baseUrl + "/checklist", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(form),
+  });
+  return await name.json();
 };
 
-const getDetailComingsoon = async (idMovie) => {
-  const detailComingsoon = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/movie/${idMovie}?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await detailComingsoon.json();
+const deleteName = async (id) => {
+  const name = await fetch(baseUrl + `/checklist/${id}`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return name.json();
 };
 
-const getTrailerComingsoon = async (idMovie) => {
-  const trailerComingsoon = await fetch(
-    `${process.env.REACT_APP_URL_MOVIE}/movie/${idMovie}/videos?api_key=${process.env.REACT_APP_URL_KEY}`,
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return await trailerComingsoon.json();
-};
-
-export {
-  getTrending,
-  getDetailTrending,
-  getTrailerTrending,
-  getComingsoon,
-  getDetailComingsoon,
-  getTrailerComingsoon,
-};
+export { login, registerUser, getAllChecklist, createName, deleteName };

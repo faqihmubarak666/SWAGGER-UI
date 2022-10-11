@@ -1,40 +1,20 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
+import React from "react";
+import { Container } from "react-bootstrap";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Intro from "./Intro";
-import DetailTrending from "../pages/trending/DetailTrending";
-import DetailComingsoon from "../pages/comingsoon/DetailComingsoon";
-import { connect } from "react-redux";
+import ChecklistContainer from "../pages/checklist/ChecklistContainer";
+import LoginContainer from "../pages/login/LoginContainer";
 
-const NavigationBar = (props) => {
-  const { showBar } = props;
+const NavigationBar = () => {
   return (
     <div>
       <BrowserRouter>
-        <Navbar variant="dark">
-          <Container>
-            <Navbar.Brand href="/">FMTY FILM</Navbar.Brand>
-            <Nav>
-              <Nav.Link href="#trending">{showBar ? "" : "TRENDING"}</Nav.Link>
-              <Nav.Link href="#comingsoon">
-                {showBar ? "" : "COMING SOON"}
-              </Nav.Link>
-            </Nav>
-          </Container>
-        </Navbar>
         <Routes>
-          <Route path="/" exact element={<Intro />} />
-          <Route path="/detail-trending" element={<DetailTrending />} />
-          <Route path="/detail-comingsoon" element={<DetailComingsoon />} />
+          <Route path="/" exact element={<LoginContainer />} />
+          <Route path="/checklist" element={<ChecklistContainer />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    showBar: state.rGetDataTrending.GetTrending.showBar,
-  };
-};
-
-export default connect(mapStateToProps)(NavigationBar);
+export default NavigationBar;
