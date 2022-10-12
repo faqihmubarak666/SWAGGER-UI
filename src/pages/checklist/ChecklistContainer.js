@@ -79,7 +79,8 @@ class ChecklistContainer extends Component {
           icon: "success",
         });
         deleteName(id).then((response) => {
-          if (response.code === 200) {
+          console.log("delete", response);
+          if (response.statusCode === 2300) {
             this.loadData();
             swal(
               "Delete Category Success",
