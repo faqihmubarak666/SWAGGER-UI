@@ -25,7 +25,7 @@ export default class FormRegister extends Component {
 
             <Form>
               <Form.Group controlId="formBookName">
-                <Form.Label>NAME</Form.Label>
+                <Form.Label>EMAIL</Form.Label>
                 <Form.Control
                   value={email}
                   type="text"
@@ -36,7 +36,7 @@ export default class FormRegister extends Component {
               </Form.Group>
 
               <Form.Group controlId="formBookName">
-                <Form.Label>NAME</Form.Label>
+                <Form.Label>USERNAME</Form.Label>
                 <Form.Control
                   value={username}
                   type="text"
@@ -47,7 +47,7 @@ export default class FormRegister extends Component {
               </Form.Group>
 
               <Form.Group controlId="formBookName">
-                <Form.Label>NAME</Form.Label>
+                <Form.Label>PASSWORD</Form.Label>
                 <Form.Control
                   value={password}
                   type="password"

@@ -14,7 +14,7 @@ class LoginContainer extends Component {
       usernameError: "",
       passwordError: "",
       showModalCreate: false,
-      loading: false,
+      movePage: false,
     };
   }
 
@@ -54,22 +54,22 @@ class LoginContainer extends Component {
             });
 
             this.setState({
-              isLoaded: !this.state.isLoaded,
+              movePage: !this.state.movePage,
             });
 
             swal("Login Success", "You clicked the button!", "success");
           } else {
             swal("Login Invalid4", "You clicked the button!", "error");
-            this.props.history?.push({
-              pathname: "/",
-            });
+            // this.props.history?.push({
+            //   pathname: "/",
+            // });
           }
         })
         .catch((err) => {
           swal("Login Invalid5", "You clicked the button!", "error");
-          this.props.history?.push({
-            pathname: "/",
-          });
+          // this.props.history?.push({
+          //   pathname: "/",
+          // });
         });
     }
   };
@@ -126,6 +126,7 @@ class LoginContainer extends Component {
           handleChangeInput={this.handleChangeInput}
           loginUser={this.loginUser}
           handleCreate={this.handleCreate}
+          movePage={this.state.movePage}
         />
 
         <FormRegister

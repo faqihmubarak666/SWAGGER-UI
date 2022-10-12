@@ -11,6 +11,7 @@ const FormLogin = (props) => {
     usernameError,
     passwordError,
     handleCreate,
+    movePage,
   } = props;
   const navigate = useNavigate();
 
@@ -47,10 +48,16 @@ const FormLogin = (props) => {
               class="btn btn-primary"
               type="button"
               className="btnLogin"
-              onClick={() => {
-                loginUser();
-                navigate("/checklist");
-              }}
+              onClick={
+                movePage
+                  ? () => {
+                      loginUser();
+                      navigate("/checklist");
+                    }
+                  : () => {
+                      loginUser();
+                    }
+              }
             >
               Login
             </button>
