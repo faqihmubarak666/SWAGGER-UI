@@ -60,7 +60,10 @@ export default class FormRegister extends Component {
           </Modal.Body>
           <Modal.Footer>
             <Button
-              onClick={() => createNewUser()}
+              onClick={() => {
+                createNewUser();
+                onHide();
+              }}
               style={{ backgroundColor: "blue" }}
             >
               REGISTER

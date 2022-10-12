@@ -30,7 +30,10 @@ const CreatName = (props) => {
         </Modal.Body>
         <Modal.Footer>
           <Button
-            onClick={() => createNewName()}
+            onClick={() => {
+              createNewName();
+              onHide();
+            }}
             style={{ backgroundColor: "blue" }}
           >
             Submit
