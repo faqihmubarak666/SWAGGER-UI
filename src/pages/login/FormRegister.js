@@ -1,75 +1,78 @@
 import React, { Component } from "react";
-// import "../../login.css";
-import Card from "react-bootstrap/Card";
-import Form from "react-bootstrap/Form";
+import { Form, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap/cjs";
 
-export default class FormLogin extends Component {
+export default class FormRegister extends Component {
   render() {
     const {
       email,
       username,
       password,
       handleChangeInput,
-      getDataUser,
-      usernameError,
-      passwordError,
-      loading,
+      show,
+      onHide,
+      createNewUser,
     } = this.props;
     return (
-      <div className="bodyLogin">
-        <div className="col-md-4 col-sm-12 mb-3">
-          <div className="login-boxLogin">
-            <Card border="success" className="body_cardLogin">
-              <h1>REGISTER</h1>
-              <div className="emailErrorLogin">{usernameError}</div>
-              <div className="textboxLogin">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <Form.Control
-                  name="email"
-                  type="email"
-                  value={email}
-                  placeholder="Enter email"
-                  onChange={(event) => handleChangeInput(event)}
-                />
-              </div>
-              <div className="textboxLogin">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-                <Form.Control
-                  name="password"
-                  type="Password"
-                  value={password}
-                  placeholder="Enter password"
-                  onChange={(event) => handleChangeInput(event)}
-                />
-              </div>
-              <div className="textboxLogin">
-                <i className="fa fa-lock" aria-hidden="true"></i>
-                <Form.Control
-                  name="username"
-                  type="username"
-                  value={username}
-                  placeholder="Enter username"
-                  onChange={(event) => handleChangeInput(event)}
-                />
-              </div>
+      <div>
+        <Modal show={show}>
+          <Modal.Body>
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                REGISTER
+              </Modal.Title>
+            </Modal.Header>
 
-              <button
-                class="btn btn-primary"
-                type="button"
-                className="btnLogin"
-                disabled={loading}
-                onClick={() => getDataUser()}
-              >
-                {loading ? (
-                  <div class="spinner-border text-success" role="status"></div>
-                ) : (
-                  "login"
-                )}
-              </button>
-            </Card>
-            <br />
-          </div>
-        </div>
+            <Form>
+              <Form.Group controlId="formBookName">
+                <Form.Label>NAME</Form.Label>
+                <Form.Control
+                  value={email}
+                  type="text"
+                  name="email"
+                  placeholder="Input name"
+                  onChange={(event) => handleChangeInput(event)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBookName">
+                <Form.Label>NAME</Form.Label>
+                <Form.Control
+                  value={username}
+                  type="text"
+                  name="username"
+                  placeholder="Input username"
+                  onChange={(event) => handleChangeInput(event)}
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formBookName">
+                <Form.Label>NAME</Form.Label>
+                <Form.Control
+                  value={password}
+                  type="password"
+                  name="password"
+                  placeholder="Input name"
+                  onChange={(event) => handleChangeInput(event)}
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              onClick={() => createNewUser()}
+              style={{ backgroundColor: "blue" }}
+            >
+              REGISTER
+            </Button>
+            <Button
+              onClick={() => onHide()}
+              style={{ backgroundColor: "blue" }}
+            >
+              CANCEL
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   }

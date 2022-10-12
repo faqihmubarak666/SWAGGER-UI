@@ -10,6 +10,7 @@ const FormLogin = (props) => {
     loginUser,
     usernameError,
     passwordError,
+    handleCreate,
   } = props;
   const navigate = useNavigate();
 
@@ -52,6 +53,14 @@ const FormLogin = (props) => {
               }}
             >
               Login
+            </button>
+            <h3>don't have account ?</h3>
+            <button
+              onClick={() => {
+                handleCreate();
+              }}
+            >
+              Register
             </button>
           </Card>
           <br />

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import FormLogin from "./FormLogin";
 import swal from "sweetalert";
-import { login } from "../ServiceApi";
+import { login, registerUser } from "../ServiceApi";
+import FormRegister from "./FormRegister";
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class LoginContainer extends Component {
       email: "",
       usernameError: "",
       passwordError: "",
-      homePage: false,
+      showModalCreate: false,
       loading: false,
     };
   }
@@ -73,6 +74,47 @@ class LoginContainer extends Component {
     }
   };
 
+  createNewUser = () => {
+    registerUser({
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password,
+    })
+      .then((response) => {
+        console.log("result", response);
+        if (
+          this.state.email === "" ||
+          this.state.username === "" ||
+          this.state.password === ""
+        ) {
+          swal("Create New Account Failed !!!");
+        } else {
+          swal(
+            "Create New Account Success",
+            "You clicked the button!",
+            "success"
+          );
+          this.loadData();
+          this.handleShowModalCreate();
+          this.setState({
+            ...this.state,
+            email: "",
+            username: "",
+            password: "",
+          });
+        }
+      })
+      .catch((err) => {
+        swal(err);
+      });
+  };
+
+  handleCreate = () => {
+    this.setState({
+      showModalCreate: !this.state.showModalCreate,
+    });
+  };
+
   render() {
     return (
       <div>
@@ -83,6 +125,17 @@ class LoginContainer extends Component {
           password={this.state.password}
           handleChangeInput={this.handleChangeInput}
           loginUser={this.loginUser}
+          handleCreate={this.handleCreate}
+        />
+
+        <FormRegister
+          email={this.state.email}
+          username={this.state.username}
+          password={this.state.password}
+          show={this.state.showModalCreate}
+          onHide={this.handleCreate}
+          createNewUser={this.createNewUser}
+          handleChangeInput={this.handleChangeInput}
         />
       </div>
     );

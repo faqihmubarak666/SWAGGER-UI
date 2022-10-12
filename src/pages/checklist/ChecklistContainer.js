@@ -34,10 +34,7 @@ class ChecklistContainer extends Component {
       name: this.state.name,
     })
       .then((response) => {
-        if (
-          this.state.name === "" ||
-          (this.state.image === "" && response.code !== 200)
-        ) {
+        if (this.state.name === "") {
           swal("Create New Category Failed !!!");
         } else {
           swal(
